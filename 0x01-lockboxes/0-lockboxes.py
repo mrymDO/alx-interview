@@ -4,17 +4,19 @@
 
 def canUnlockAll(boxes):
     """checking locked and unlocked boxes"""
-    unlocked_boxes = set()
+    if not boxes or type(boxes) is not list:
+        return False
 
-    boxes_to_check = [0]
-
-    while boxes_to_check:
-        current_box = boxes_to_check.pop()
-
-        unlocked_boxes.add(current_box)
-
+    unlocked = [0]
+    i = 0
+    while i < len(unlocked):
+        current_box = unlocked[i]
         for key in boxes[current_box]:
-            if key not in unlocked_boxes:
-                boxes_to_check.append(key)
+            if key not in unlocked and key < len(boxes):
+                unlocked.append(key)
+        i += 1
 
-    return len(unlocked_boxes) == len(boxes)
+    if len(unlocked) == len(boxes):
+        return True
+    else:
+        return False
