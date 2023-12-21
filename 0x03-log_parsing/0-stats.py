@@ -43,7 +43,7 @@ def parse_log_entries():
         print(f"File size: {total_file_size}")
         for code in sorted(status_code_count):
             print(f"{code}: {status_code_count[code]}")
-
+        traceback.print_exc()
 
 if __name__ == "__main__":
     parse_log_entries()
