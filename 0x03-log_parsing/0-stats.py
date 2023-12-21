@@ -38,15 +38,16 @@ def parse_log_entries():
                     print(f"File size: {total_file_size}")
                     for code in sorted(status_code_count):
                         print(f"{code}: {status_code_count[code]}")
+
     except KeyboardInterrupt:
+        raise
+    except BrokenPipeError:
+        raise
+    finally:
         print(f"File size: {total_file_size}")
         for code in sorted(status_code_count):
-            print(f"{code}: {status_code_count[code]}") 
-        raise
+            print(f"{code}: {status_code_count[code]}")
 
 
 if __name__ == "__main__":
-    try:
-        parse_log_entries()
-    except KeyboardInterrupt:
-        pass
+    parse_log_entries()
