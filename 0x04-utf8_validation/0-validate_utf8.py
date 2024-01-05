@@ -24,5 +24,7 @@ def validUTF8(data):
             num_consecutive_ones -= 1
             if num_consecutive_ones < 0:
                 return False
+            if num_consecutive_ones == 0:
+                continue
 
     return num_consecutive_ones == 0
