@@ -22,5 +22,7 @@ def validUTF8(data):
             if byte >> 6 != 0b10:
                 return False
             num_consecutive_ones -= 1
+            if num_consecutive_ones < 0:
+                return False
 
     return num_consecutive_ones == 0
