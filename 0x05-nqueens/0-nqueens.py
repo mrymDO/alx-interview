@@ -1,14 +1,19 @@
 #!/usr/bin/python3
 import sys
 
+
 def check_two_queens(new_queen_position, other_queen_position):
-    if new_queen_position[0] == other_queen_position[0] or new_queen_position[1] == other_queen_position[1]:
+    if new_queen_position[0] == other_queen_position[0] or\
+            new_queen_position[1] == other_queen_position[1]:
         return False
-    if new_queen_position[0] + new_queen_position[1] == other_queen_position[0] + other_queen_position[1]:
+    if new_queen_position[0] + new_queen_position[1] ==\
+            other_queen_position[0] + other_queen_position[1]:
         return False
-    if new_queen_position[0] - new_queen_position[1] == other_queen_position[0] - other_queen_position[1]:
+    if new_queen_position[0] - new_queen_position[1] ==\
+            other_queen_position[0] - other_queen_position[1]:
         return False
     return True
+
 
 def solve_nqueens(n):
     queens = []
@@ -28,6 +33,7 @@ def solve_nqueens(n):
 
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
