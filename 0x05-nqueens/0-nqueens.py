@@ -1,44 +1,33 @@
 #!/usr/bin/python3
-"""N queens"""
-
 import sys
 
-
-def is_valid(board, row, col):
-    """Check if placing a queen in the given position is valid"""
-    for i in range(row):
-        if board[i] == col or \
-           board[i] - i == col - row or \
-           board[i] + i == col + row:
-            return False
+def check_two_queens(new_queen_position, other_queen_position):
+    if new_queen_position[0] == other_queen_position[0] or new_queen_position[1] == other_queen_position[1]:
+        return False
+    if new_queen_position[0] + new_queen_position[1] == other_queen_position[0] + other_queen_position[1]:
+        return False
+    if new_queen_position[0] - new_queen_position[1] == other_queen_position[0] - other_queen_position[1]:
+        return False
     return True
 
+def solve_nqueens(n):
+    queens = []
+    solutions = []
 
-def print_solution(board):
-    """Print the current solution in the specified format"""
-    print("[", end="")
-    for i in range(len(board)):
-        print("[{}, {}]".format(i, board[i]), end=" ")
-    print("\b\b]]")
+    def backtrack(row):
+        if row == n:
+            solutions.append(list(queens))
+            return
+        for col in range(n):
+            if all(check_two_queens((row, col), queen) for queen in queens):
+                queens.append([row, col])
+                backtrack(row + 1)
+                queens.pop()
 
+    backtrack(0)
 
-def solve_nqueens(board, row, n):
-    """Recursively solve N-Queens"""
-    if row == n:
-        print_solution(board)
-        return
-
-    for col in range(n):
-        if is_valid(board, row, col):
-            board[row] = col
-            solve_nqueens(board, row + 1, n)
-
-
-def nqueens(n):
-    """Initialize the board with all queens in the first column"""
-    board = [-1] * n
-    solve_nqueens(board, 0, n)
-
+    for solution in solutions:
+        print(solution)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -55,4 +44,4 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
 
-    nqueens(N)
+    solve_nqueens(N)
