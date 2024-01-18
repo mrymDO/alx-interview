@@ -13,7 +13,7 @@ if (process.argv.length > 2) {
     });
   };
 
-  const API_URL = 'https://swapi-api.hbtn.io/api/films/' + id;
+  const API_URL = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
   (async () => {
     try {
