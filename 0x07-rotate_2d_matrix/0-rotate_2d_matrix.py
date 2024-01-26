@@ -7,9 +7,19 @@ def rotate_2d_matrix(matrix):
     """
     n = len(matrix)
 
-    for i in range(n):
-        for j in range(i, n):
-            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    for layer in range(n // 2):
+        first = layer
+        last = n - layer - 1
 
-        for i in range(n):
-            matrix[i].reverse()
+        for i in range(first, last):
+            offset = i - first
+
+            top = matrix[first][i]
+
+            matrix[first][i] = matrix[last - offset][first]
+
+            matrix[last - offset][first] = matrix[last][last - offset]
+
+            matrix[last][last - offset] = matrix[i][last]
+
+            matrix[i][last] = top
