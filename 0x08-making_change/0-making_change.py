@@ -21,5 +21,3 @@ def makeChange(coins, total):
         return dp[total]
     else:
         return -1
-
-print(makeChange([1, 2, 25], 37))
