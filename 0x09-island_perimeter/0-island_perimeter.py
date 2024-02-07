@@ -2,7 +2,10 @@
 """ Island perimeter
 """
 
+
 def island_perimeter(grid):
+    """ Island perimeter
+    """
     perimeter = 0
 
     if not grid or not grid[0]:
