@@ -15,13 +15,14 @@ def isWinner(x, nums):
                 return False
         return True
 
+    memo_primes = {}
+
     def get_primes_up_to_n(n):
         """get list of prime numbers up to n"""
-        primes = []
-        for i in range(2, n + 1):
-            if is_prime(i):
-                primes.append(i)
-        return primes
+        if n not in memo_primes:
+            primes = [i for i in range(2, n + 1) if is_prime(i)]
+            memo_primes[n] = primes
+        return memo_primes[n]
 
     def optimal_moves(nums):
         """find optimal moves"""
@@ -47,6 +48,7 @@ def isWinner(x, nums):
             if not current_nums:
                 maria_wins += 1
                 break
+
     if maria_wins > ben_wins:
         return "Maria"
     elif maria_wins < ben_wins:
